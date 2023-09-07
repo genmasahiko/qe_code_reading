@@ -1,4 +1,0 @@
- &BANDS
-    filband = 'pbe.bands.dat',
-    lsym = .true.,
- /

@@ -1,0 +1,2 @@
+This repository aims to understand QuantumESPRESSO source code.
+As a first step, only pw.x will be compiled and the other file is deleted.

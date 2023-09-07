@@ -71,99 +71,99 @@ pw : pwlibs
 	if test -d PW ; then \
 	( cd PW ; $(MAKE) TLDEPS= all || exit 1) ; fi
 
-cp : bindir mods
-	if test -d CPV ; then \
-	( cd CPV ; $(MAKE) TLDEPS= all || exit 1) ; fi
-
-ph : phlibs
-	if test -d PHonon; then \
-	( cd PHonon; $(MAKE) TLDEPS= all || exit 1) ; fi
-
-hp : hplibs
-	if test -d HP; then \
-	( cd HP; $(MAKE) TLDEPS= all || exit 1) ; fi
-
-neb : pwlibs
-	if test -d NEB; then \
-	( cd NEB; $(MAKE) TLDEPS= all || exit 1) ; fi
-
-tddfpt : lrmods
-	if test -d TDDFPT; then \
-	( cd TDDFPT; $(MAKE) TLDEPS= all || exit 1) ; fi
-
-pp : pwlibs
-	if test -d PP ; then \
-	( cd PP ; $(MAKE) TLDEPS= all || exit 1 ) ; fi
-
-pwcond : pwlibs
-	if test -d PWCOND ; then \
-	( cd PWCOND ; $(MAKE) TLDEPS= all || exit 1 ) ; fi
-
-acfdt : phlibs
-	if test -d ACFDT ; then \
-	( cd ACFDT ; $(MAKE) TLDEPS= all || exit 1 ) ; fi
-
-gwl : phlibs
-	if test -d GWW ; then \
-	( cd GWW ; $(MAKE) TLDEPS= all || exit 1 ) ; fi
-
-gipaw : pwlibs
-	( cd install ; $(MAKE) -f plugins_makefile $@ || exit 1 )
-
-d3q : phlibs
-	( cd install ; $(MAKE) -f plugins_makefile $@ || exit 1 )
-
-ld1 : bindir mods
-	if test -d atomic ; then \
-	( cd atomic ; $(MAKE) TLDEPS= all || exit 1 ) ; fi
-
-xspectra : pwlibs
-	if test -d XSpectra ; then \
-	( cd XSpectra ; $(MAKE) TLDEPS= all || exit 1 ) ; fi
-
-couple : pw cp
-	if test -d COUPLE ; then \
-	( cd COUPLE ; $(MAKE) TLDEPS= all || exit 1 ) ; fi
-
-epw: phlibs
-	if test -d EPW ; then \
-	( cd EPW ; $(MAKE) all || exit 1; \
-		cd ../bin; ln -fs ../EPW/bin/epw.x . ); fi
-
-all_currents:
-	if test -d QEHeat ; then \
-	( cd QEHeat ; $(MAKE) all || exit 1; ) ; fi
-
-travis : pwall epw
-	if test -d test-suite ; then \
-	( cd test-suite ; make run-travis || exit 1 ) ; fi
-
-kcw : pwlibs lrmods pp w90
-	if test -d KCW ; then \
-	( cd KCW ; $(MAKE) all || exit 1 ) ; fi
-
-gui : bindir
-	@if test -d GUI/PWgui ; then \
-	    cd GUI/PWgui ; \
-	    $(MAKE) TLDEPS= init; \
-	    echo ; \
-	    echo "  ------------------------------------------------------------"; \
-	    echo "  PWgui was built in ./GUI/PWgui/ and a link was made in bin/."; \
-	    echo "  ------------------------------------------------------------"; \
-	    echo "  Try it either as:  "; \
-	    echo "         ./GUI/PWgui/pwgui" ; \
-	    echo "     or"; \
-	    echo "         ./bin/pwgui";\
-	    echo ; \
-	else \
-	    echo ; \
-	    echo "  Sorry, GUI/PWgui directory does not exist !" ; \
-	    echo ; \
-	fi
-
-pwall : pw neb ph pp pwcond acfdt
-
-all   : pwall cp ld1 tddfpt hp xspectra gwl kcw
+#	cp : bindir mods
+#		if test -d CPV ; then \
+#		( cd CPV ; $(MAKE) TLDEPS= all || exit 1) ; fi
+#	
+#	ph : phlibs
+#		if test -d PHonon; then \
+#		( cd PHonon; $(MAKE) TLDEPS= all || exit 1) ; fi
+#	
+#	hp : hplibs
+#		if test -d HP; then \
+#		( cd HP; $(MAKE) TLDEPS= all || exit 1) ; fi
+#	
+#	neb : pwlibs
+#		if test -d NEB; then \
+#		( cd NEB; $(MAKE) TLDEPS= all || exit 1) ; fi
+#	
+#	tddfpt : lrmods
+#		if test -d TDDFPT; then \
+#		( cd TDDFPT; $(MAKE) TLDEPS= all || exit 1) ; fi
+#	
+#	pp : pwlibs
+#		if test -d PP ; then \
+#		( cd PP ; $(MAKE) TLDEPS= all || exit 1 ) ; fi
+#	
+#	pwcond : pwlibs
+#		if test -d PWCOND ; then \
+#		( cd PWCOND ; $(MAKE) TLDEPS= all || exit 1 ) ; fi
+#	
+#	acfdt : phlibs
+#		if test -d ACFDT ; then \
+#		( cd ACFDT ; $(MAKE) TLDEPS= all || exit 1 ) ; fi
+#	
+#	gwl : phlibs
+#		if test -d GWW ; then \
+#		( cd GWW ; $(MAKE) TLDEPS= all || exit 1 ) ; fi
+#	
+#	gipaw : pwlibs
+#		( cd install ; $(MAKE) -f plugins_makefile $@ || exit 1 )
+#	
+#	d3q : phlibs
+#		( cd install ; $(MAKE) -f plugins_makefile $@ || exit 1 )
+#	
+#	ld1 : bindir mods
+#		if test -d atomic ; then \
+#		( cd atomic ; $(MAKE) TLDEPS= all || exit 1 ) ; fi
+#	
+#	xspectra : pwlibs
+#		if test -d XSpectra ; then \
+#		( cd XSpectra ; $(MAKE) TLDEPS= all || exit 1 ) ; fi
+#	
+#	couple : pw cp
+#		if test -d COUPLE ; then \
+#		( cd COUPLE ; $(MAKE) TLDEPS= all || exit 1 ) ; fi
+#	
+#	epw: phlibs
+#		if test -d EPW ; then \
+#		( cd EPW ; $(MAKE) all || exit 1; \
+#			cd ../bin; ln -fs ../EPW/bin/epw.x . ); fi
+#	
+#	all_currents:
+#		if test -d QEHeat ; then \
+#		( cd QEHeat ; $(MAKE) all || exit 1; ) ; fi
+#	
+#	travis : pwall epw
+#		if test -d test-suite ; then \
+#		( cd test-suite ; make run-travis || exit 1 ) ; fi
+#	
+#	kcw : pwlibs lrmods pp w90
+#		if test -d KCW ; then \
+#		( cd KCW ; $(MAKE) all || exit 1 ) ; fi
+#	
+#	gui : bindir
+#		@if test -d GUI/PWgui ; then \
+#		    cd GUI/PWgui ; \
+#		    $(MAKE) TLDEPS= init; \
+#		    echo ; \
+#		    echo "  ------------------------------------------------------------"; \
+#		    echo "  PWgui was built in ./GUI/PWgui/ and a link was made in bin/."; \
+#		    echo "  ------------------------------------------------------------"; \
+#		    echo "  Try it either as:  "; \
+#		    echo "         ./GUI/PWgui/pwgui" ; \
+#		    echo "     or"; \
+#		    echo "         ./bin/pwgui";\
+#		    echo ; \
+#		else \
+#		    echo ; \
+#		    echo "  Sorry, GUI/PWgui directory does not exist !" ; \
+#		    echo ; \
+#		fi
+#	
+#	pwall : pw neb ph pp pwcond acfdt
+#	
+#	all   : pwall cp ld1 tddfpt hp xspectra gwl kcw
 
 ###########################################################
 # Auxiliary targets used by main targets:
@@ -174,21 +174,21 @@ pwlibs: bindir mods libks_solvers dftd3
 	if test -d PW ; then \
 	( cd PW ; $(MAKE) pw-lib || exit 1) ; fi
 
-phlibs: pwlibs lrmods
-	if test -d PHonon; then \
-	( cd PHonon; $(MAKE) ph-lib || exit 1) ; fi
-
-hplibs: pwlibs lrmods
-	if test -d HP; then \
-	( cd HP; $(MAKE) hp-lib || exit 1) ; fi
-
-gwwlib : phlibs
-	if test -d GWW ; then \
-	( cd GWW ; $(MAKE) gwwa || exit 1 ) ; fi
-
-pw4gwwlib : phlibs
-	if test -d GWW ; then \
-	( cd GWW ; $(MAKE) pw4gwwa || exit 1 ) ; fi
+#	phlibs: pwlibs lrmods
+#		if test -d PHonon; then \
+#		( cd PHonon; $(MAKE) ph-lib || exit 1) ; fi
+#	
+#	hplibs: pwlibs lrmods
+#		if test -d HP; then \
+#		( cd HP; $(MAKE) hp-lib || exit 1) ; fi
+#	
+#	gwwlib : phlibs
+#		if test -d GWW ; then \
+#		( cd GWW ; $(MAKE) gwwa || exit 1 ) ; fi
+#	
+#	pw4gwwlib : phlibs
+#		if test -d GWW ; then \
+#		( cd GWW ; $(MAKE) pw4gwwa || exit 1 ) ; fi
 
 mods : $(FOX) libutil libla libfft libupf libmbd librxc
 	( cd Modules ; $(MAKE) TLDEPS= all || exit 1 )
@@ -211,8 +211,8 @@ libutil :
 libupf : libutil libcuda
 	( cd upflib ; $(MAKE) TLDEPS= all || exit 1 )
 
-lrmods : mods pwlibs
-	( cd LR_Modules ; $(MAKE) TLDEPS= all || exit 1 )
+#	lrmods : mods pwlibs
+#		( cd LR_Modules ; $(MAKE) TLDEPS= all || exit 1 )
 
 dftd3 : mods
 	( cd dft-d3 ; $(MAKE) TLDEPS= all || exit 1 )
@@ -240,35 +240,35 @@ libmbd:
 # plugins
 #########################################################
 
-w90: bindir $(LAPACK)
-	( cd install ; $(MAKE) -f plugins_makefile $@ || exit 1 )
-
-want: $(LAPACK)
-	( cd install ; $(MAKE) -f plugins_makefile $@ || exit 1 )
-
-yambo: $(LAPACK)
-	( cd install ; $(MAKE) -f plugins_makefile $@ || exit 1 )
+#	w90: bindir $(LAPACK)
+#		( cd install ; $(MAKE) -f plugins_makefile $@ || exit 1 )
+#	
+#	want: $(LAPACK)
+#		( cd install ; $(MAKE) -f plugins_makefile $@ || exit 1 )
+#	
+#	yambo: $(LAPACK)
+#		( cd install ; $(MAKE) -f plugins_makefile $@ || exit 1 )
 
 #########################################################
 # "make links" produces links to all executables in bin/
 #########################################################
 
 # Contains workaround for name conflicts (dos.x and bands.x) with WANT
-links : bindir
-	( cd bin/ ; \
-	rm -f *.x ; \
-	for exe in ../*/*/*.x ../*/bin/* ; do \
-	    if test ! -L $$exe ; then ln -fs $$exe . ; fi \
-	done ; \
-	[ -f ../WANT/wannier/dos.x ] && \
-		ln -fs ../WANT/wannier/dos.x ../bin/dos_want.x ; \
-	[ -f ../PP/src/dos.x ] &&  \
-		ln -fs ../PP/src/dos.x ../bin/dos.x ; \
-	[ -f ../WANT/wannier/bands.x ] && \
-		ln -fs ../WANT/wannier/bands.x ../bin/bands_want.x ; \
-	[ -f ../PP/src/dos.x ] &&  ln -fs ../PP/src/bands.x ../bin/bands.x ; \
-	[ -f ../W90/wannier90.x ] &&  ln -fs ../W90/wannier90.x ../bin/wannier90.x ;\
-	)
+#	links : bindir
+#		( cd bin/ ; \
+#		rm -f *.x ; \
+#		for exe in ../*/*/*.x ../*/bin/* ; do \
+#		    if test ! -L $$exe ; then ln -fs $$exe . ; fi \
+#		done ; \
+#		[ -f ../WANT/wannier/dos.x ] && \
+#			ln -fs ../WANT/wannier/dos.x ../bin/dos_want.x ; \
+#		[ -f ../PP/src/dos.x ] &&  \
+#			ln -fs ../PP/src/dos.x ../bin/dos.x ; \
+#		[ -f ../WANT/wannier/bands.x ] && \
+#			ln -fs ../WANT/wannier/bands.x ../bin/bands_want.x ; \
+#		[ -f ../PP/src/dos.x ] &&  ln -fs ../PP/src/bands.x ../bin/bands.x ; \
+#		[ -f ../W90/wannier90.x ] &&  ln -fs ../W90/wannier90.x ../bin/wannier90.x ;\
+#		)
 
 #############################################################
 # 'make install' works with "configure --prefix=PREFIX"
@@ -332,27 +332,27 @@ tar :
 #########################################################
 # Tools for the developers
 #########################################################
-tar-gui :
-	@if test -d GUI/PWgui ; then \
-	    cd GUI/PWgui ; \
-	    $(MAKE) TLDEPS= clean init pwgui-source; \
-	    mv PWgui-*.tgz ../.. ; \
-	else \
-	    echo ; \
-	    echo "  Sorry, tar-gui works only for git sources !!!" ; \
-	    echo ; \
-	fi
-
-tar-qe-modes :
-	@if test -d GUI/QE-modes ; then \
-	    cd GUI/QE-modes ; \
-	    $(MAKE) TLDEPS= veryclean tar; \
-	    mv QE-modes-*.tar.gz ../.. ; \
-	else \
-	    echo ; \
-	    echo "  Sorry, tar-qe-modes works only for git sources !!!" ; \
-	    echo ; \
-	fi
+# tar-gui :
+# 	@if test -d GUI/PWgui ; then \
+# 	    cd GUI/PWgui ; \
+# 	    $(MAKE) TLDEPS= clean init pwgui-source; \
+# 	    mv PWgui-*.tgz ../.. ; \
+# 	else \
+# 	    echo ; \
+# 	    echo "  Sorry, tar-gui works only for git sources !!!" ; \
+# 	    echo ; \
+# 	fi
+# 
+# tar-qe-modes :
+# 	@if test -d GUI/QE-modes ; then \
+# 	    cd GUI/QE-modes ; \
+# 	    $(MAKE) TLDEPS= veryclean tar; \
+# 	    mv QE-modes-*.tar.gz ../.. ; \
+# 	else \
+# 	    echo ; \
+# 	    echo "  Sorry, tar-qe-modes works only for git sources !!!" ; \
+# 	    echo ; \
+# 	fi
 
 # NOTICE about "make doc": in order to build the .html and .txt
 # documentation in Doc, "tcl", "tcllib", "xsltproc" are needed;
